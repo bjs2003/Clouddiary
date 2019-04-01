@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>My Notes and Diary</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    </head>
+    
+    <body>
+        <div id="mainpage">
+            <br><br><br><br>
+            <center>
+                <h1>Cloud Diary and Notes</h1>
+            </center>
+            <br><br>
+                
+            
+            
+            <div id="login">
+                <center>
+                    <h2>Login</h2>
+                        <input type="text" placeholder="UserName"><br><br>
+                        <input type="password" placeholder="Pasword"><br><br>
+                        <input type="button" value="Login" id="loginbtn">
+                        <input type="button" value="Signup" id="changetosignupbtn">
+                </center>
+            </div>
+            
+            
+            
+            <div id="signup" style="display: none">
+                <center>
+                    <h2>Login</h2>
+                        <input type="text" placeholder="UserName" id="signupuname"><br><br>
+                        <input type="email" placeholder="Email" id="signupemail"><br><br>
+                        <input type="password" placeholder="Pasword" id="signuppass"><br><br>
+                        <input type="button" value="Login" id="changetologinbtn">
+                        <input type="button" value="Signup" id="signupbtn">
+                </center>
+            </div>
+            
+        </div>
+        
+        <script src="firebase.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
