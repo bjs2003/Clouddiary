@@ -1,5 +1,3 @@
-const uname = document.getElementById("signupusername").value;
-
 //===========change pages=================================================================
 document.getElementById("changetosignupbtn").addEventListener("click", function(){
     document.getElementById("signup").style.display = "block";
@@ -44,11 +42,20 @@ document.getElementById("signupbtn").addEventListener("click", function(){
     //Get Email and Pass
     const email = document.getElementById("signupemail").value;
     const pass = document.getElementById("signuppassword").value;
+    const uname = document.getElementById("signupusername").value;
     const auth = firebase.auth();
     
     //Sign up
     const promise = auth.createUserWithEmailAndPassword(email,pass);
-    promise.catch(e => console.log(e.message));
+    promise
+        .then(user => {
+        const uid = firebase.auth().currentUser.uid;
+        const mydbref = firebase.database().ref().child('users').child(uid);
+        mydbref.set({
+                username: uname
+            });
+        })
+        .catch(e => console.log(e.message));
 });
 
 
@@ -73,18 +80,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         const uid = firebase.auth().currentUser.uid;
         const mydbref = firebase.database().ref().child('users').child(uid);
         
-        if(mydbref){
-            console.log("uid="+uid)
-            console.log(mydbref)
-            mydbref.on('value', snap => {
-                readval.innerHTML = snap.val().username;
-            });
-        }else{
-            console.log(uname);
-            mydbref.set({
-                username: uname
-            });
-        }
+        mydbref.on('value', snap => {
+            readval.innerHTML = snap.val().username;
+        });
         
     }else{
         console.log("not Logged in");
