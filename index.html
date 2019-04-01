@@ -6,39 +6,98 @@
     </head>
     
     <body>
-        <div id="mainpage">
-            <br><br><br><br>
+<!-------------------------------------------------Start first page------------------------------------------------------>
+        <div id="firstpage">
+            <br><br><br>
             <center>
                 <h1>Cloud Diary and Notes</h1>
             </center>
-            <br><br>
+            <br>
                 
             
-            
+<!-------------------------------------------------Start login page------------------------------------------------------> 
             <div id="login">
                 <center>
                     <h2>Login</h2>
-                        <input type="text" placeholder="UserName"><br><br>
-                        <input type="password" placeholder="Pasword"><br><br>
-                        <input type="button" value="Login" id="loginbtn">
-                        <input type="button" value="Signup" id="changetosignupbtn">
+                        <input type="email" placeholder="Email" id="loginemail"><br><br>
+                        <input type="password" placeholder="Pasword" id="loginpassword"><br><br>
+                        <input type="button" value="Login" id="loginbtn"><br><br>
+                        Don't have an account <input type="button" value="Signup" id="changetosignupbtn">
+                    <br><br><br><br>
                 </center>
             </div>
+<!----------------------------------------------------End login page------------------------------------------------------>
             
             
             
+            
+            
+<!-------------------------------------------------Start signup page------------------------------------------------------>
             <div id="signup" style="display: none">
                 <center>
-                    <h2>Login</h2>
-                        <input type="text" placeholder="UserName" id="signupuname"><br><br>
+                    <h2>Sign Up</h2>
                         <input type="email" placeholder="Email" id="signupemail"><br><br>
-                        <input type="password" placeholder="Pasword" id="signuppass"><br><br>
-                        <input type="button" value="Login" id="changetologinbtn">
-                        <input type="button" value="Signup" id="signupbtn">
+                        <input type="text" placeholder="User Name" id="signupusername"><br><br>
+                        <input type="password" placeholder="Pasword" id="signuppassword"><br><br>
+                        <input type="button" value="Signup" id="signupbtn"><br><br>
+                        Already have an account <input type="button" value="Login" id="changetologinbtn">
                 </center>
             </div>
+<!----------------------------------------------------End signup page------------------------------------------------------>
+        </div>
+<!----------------------------------------------------End First page------------------------------------------------------>
+
+        
+        
+        
+        
+        
+        
+        
+<!-------------------------------------------------Start home page-------------------------------------------------------->
+        <div id="homepage" style="display: none; margin: 10px">
+            <br><br>
+            
+<!--            <div id="pageone">
+                <center>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <button id="enter">Enter</button>
+                </center>
+            </div>-->
+            
+<!-------------------------------------------------Start pagetwo----------------------------------------------------------> 
+            <div id="pagetwo">
+                Welcome <span id="readuname"></span>
+                <button id="logout" style="float: right">Logout</button>
+                <br><br><br><br><br><br><br><br><br><br>
+                <center>
+                    <input id="sample" type="text">
+                    <button id="writedatabtn">write</button><br><br><br><br>
+                    
+                </center>
+            </div>
+<!-------------------------------------------------End pagetwo---------------------------------------------------------->             
+
+            
+            
+            
+
+            
+            
+<!-------------------------------------------------Start My Diary--------------------------------------------------------> 
+            <div id="mydiary" style="display: none">
+                <button id="logout" style="float: right">Logout</button>
+                <br><br><br><br><br><br><br><br><br><br>
+                <center>
+                    <button id="diaryhomebtn">Home</button>
+                </center>
+            </div>
+<!-------------------------------------------------End My Diary---------------------------------------------------------->
             
         </div>
+<!-------------------------------------------------End home page---------------------------------------------------------->
+        
+        
         
         <script src="firebase.js"></script>
         <script src="index.js"></script>
