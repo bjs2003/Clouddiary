@@ -9,16 +9,69 @@ document.getElementById("changetologinbtn").addEventListener("click", function()
     document.getElementById("login").style.display = "block";
 });
 
-document.getElementById("writedatabtn").addEventListener("click", function(){
-});
-
-/*document.getElementById("enter").addEventListener("click", function(){
-    
-    
+document.getElementById("newentrybtn").addEventListener("click", function(){
     document.getElementById("pageone").style.display = "none";
     document.getElementById("pagetwo").style.display = "block";
-});*/
+    document.getElementById("backbtn").style.display = "block";
+});
+
+document.getElementById("myentriesbtn").addEventListener("click", function(){
+    document.getElementById("pageone").style.display = "none";
+    document.getElementById("pagethree").style.display = "block";
+    document.getElementById("backbtn").style.display = "block";
+});
+
+document.getElementById("backbtn").addEventListener("click", function(){
+    document.getElementById("pageone").style.display = "block";
+    document.getElementById("pagetwo").style.display = "none";
+    document.getElementById("pagethree").style.display = "none";
+});
 //======================================================================================
+
+
+
+
+//==================================read , write data=====================================
+document.getElementById("readdatabtn").addEventListener("click", function(){
+    
+    var entrydate = document.getElementById("inputentrydate").value;
+    var entrydata = document.getElementById("oldentries");
+    console.log(entrydate);
+    
+    const uid = firebase.auth().currentUser.uid;
+    const mydbref = firebase.database().ref().child('users').child(uid).child("entries").child(entrydate);
+    
+    const promise = mydbref.once('value')
+        .then(function(snapshot){
+            entrydata.innerHTML = snapshot.val().entrydata;
+        })
+        .catch(e => {
+            entrydata.innerHTML = "No Entries Found";
+        });
+});
+
+document.getElementById("writedatabtn").addEventListener("click", function(){
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    
+    function pad(d) {
+        return (d < 10) ? '0' + d.toString() : d.toString();
+    }
+    
+    var entrydate = y + "-" + pad(m) + "-" + pad(d);
+    var entrydata = document.getElementById("textentry").value;
+    
+    const uid = firebase.auth().currentUser.uid;
+    const mydbref = firebase.database().ref().child('users').child(uid).child("entries").child(entrydate);
+    
+    mydbref.set({
+            entrydata: entrydata
+    });
+});
+//=========================================================================================
+
 
 
 
@@ -33,7 +86,10 @@ document.getElementById("loginbtn").addEventListener("click", function(){
     
     //Sign in
     const promise = auth.signInWithEmailAndPassword(email,pass);
-    promise.catch(e => console.log(e.message));
+    promise.catch(e => {
+        console.log(e.message);
+        alert(e.message);
+    });
 });
 
 
@@ -55,7 +111,10 @@ document.getElementById("signupbtn").addEventListener("click", function(){
                 username: uname
             });
         })
-        .catch(e => console.log(e.message));
+        .catch(e => {
+            console.log(e.message);
+            alert(e.message)
+        });
 });
 
 
@@ -64,6 +123,8 @@ document.getElementById("logout").addEventListener("click", function(){
     firebase.auth().signOut();
 });
 //===========================================================================================
+
+
 
 
 
@@ -80,7 +141,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         const uid = firebase.auth().currentUser.uid;
         const mydbref = firebase.database().ref().child('users').child(uid);
         
-        mydbref.on('value', snap => {
+        mydbref.once('value', snap => {
             readval.innerHTML = snap.val().username;
         });
         

@@ -3,6 +3,7 @@
         <title>My Notes and Diary</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+        <link rel="stylesheet" href="styles.css">
     </head>
     
     <body>
@@ -19,9 +20,11 @@
             <div id="login">
                 <center>
                     <h2>Login</h2>
-                        <input type="email" placeholder="Email" id="loginemail"><br><br>
-                        <input type="password" placeholder="Pasword" id="loginpassword"><br><br>
+                    <form id="loginform">
+                        <input type="email" placeholder="Email" id="loginemail" required><br><br>
+                        <input type="password" placeholder="Pasword" id="loginpassword" required><br><br>
                         <input type="button" value="Login" id="loginbtn"><br><br>
+                    </form>
                         Don't have an account <input type="button" value="Signup" id="changetosignupbtn">
                     <br><br><br><br>
                 </center>
@@ -36,10 +39,12 @@
             <div id="signup" style="display: none">
                 <center>
                     <h2>Sign Up</h2>
-                        <input type="email" placeholder="Email" id="signupemail"><br><br>
-                        <input type="text" placeholder="User Name" id="signupusername"><br><br>
-                        <input type="password" placeholder="Pasword" id="signuppassword"><br><br>
+                    <form id="signupform">
+                        <input type="email" placeholder="Email" id="signupemail" required><br><br>
+                        <input type="text" placeholder="User Name" id="signupusername" required><br><br>
+                        <input type="password" placeholder="Pasword" id="signuppassword" required><br><br>
                         <input type="button" value="Signup" id="signupbtn"><br><br>
+                    </form>
                         Already have an account <input type="button" value="Login" id="changetologinbtn">
                 </center>
             </div>
@@ -56,36 +61,54 @@
         
 <!-------------------------------------------------Start home page-------------------------------------------------------->
         <div id="homepage" style="display: none; margin: 10px">
-            <br><br>
+            <br>
+            <button id="backbtn" style="display: block; float: left">Back</button>
+            <button id="logout" style="float: right">Logout</button><br><br><br>
+            <center><h2>Welcome <span id="readuname"></span></h2></center>
+
+            
+<!-------------------------------------------------Start pageone----------------------------------------------------------> 
+            <div id="pageone" class="page-one">
+                <center>
+                    <input id="newentrybtn" value="New Entry" type="button"><br><br><br><br><br><br>
+                    <input id="myentriesbtn" value="My Previous Entries" type="button">
+                </center>
+            </div>
+<!-------------------------------------------------Start pageone----------------------------------------------------------> 
+            
+            
             
 <!-------------------------------------------------Start pagetwo----------------------------------------------------------> 
-            <div id="pagetwo">
-                Welcome <span id="readuname"></span>
-                <button id="logout" style="float: right">Logout</button>
-                <br><br><br><br><br><br><br><br><br><br>
+            <div id="pagetwo" style="display: none">
+                <br><br>
                 <center>
-                    <input id="sample" type="text">
-                    <button id="writedatabtn">write</button><br><br><br><br>
+                    <textarea autofocus id="textentry">
+                    </textarea><br><br>
+                    <button id="writedatabtn">Write</button><br>
                     
                 </center>
             </div>
-<!-------------------------------------------------End pagetwo---------------------------------------------------------->             
+<!-------------------------------------------------End pagetwo---------------------------------------------------------->
 
             
             
-            
-
-            
-            
-<!-------------------------------------------------Start My Diary--------------------------------------------------------> 
-            <div id="mydiary" style="display: none">
-                <button id="logout" style="float: right">Logout</button>
-                <br><br><br><br><br><br><br><br><br><br>
+<!-------------------------------------------------Start pagethree-------------------------------------------------------> 
+            <div id="pagethree" style="display: none">
+                <br><br>
                 <center>
-                    <button id="diaryhomebtn">Home</button>
+                    <div id="oldentries">
+                    
+                    </div>
+                    <br>
+                    Enter date to read entry<br><br>
+                    <input id="inputentrydate" type="date">
+                    <button id="readdatabtn">Read</button>
+                    
                 </center>
             </div>
-<!-------------------------------------------------End My Diary---------------------------------------------------------->
+<!-------------------------------------------------End pagetwo---------------------------------------------------------->
+            
+            
             
         </div>
 <!-------------------------------------------------End home page---------------------------------------------------------->
